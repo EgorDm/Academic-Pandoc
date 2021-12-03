@@ -7,8 +7,20 @@ WORKDIR="$(dirname $INPUT_FILE)"
 cd $WORKDIR
 
 SCRIPT_DIR_REL="$(realpath --relative-to="$(pwd)" "$SCRIPT_DIR")"
-OUTPUT_PDF="${INPUT_FILE/md/pdf}"
-OUTPUT_TEX="${INPUT_FILE/md/tex}"
+
+# Handle directory projects
+if [ -d "$INPUT_FILE" ]; then
+  echo $INPUT_FILE
+  INPUT_FILE="$(realpath $INPUT_FILE)"
+  cat "$INPUT_FILE"/*.md > "$INPUT_FILE/main.mdc"
+  INPUT_FILE="${INPUT_FILE}/main.mdc"
+  OUTPUT_PDF="${INPUT_FILE/mdc/pdf}"
+  OUTPUT_TEX="${INPUT_FILE/mdc/tex}"
+else
+  OUTPUT_PDF="${INPUT_FILE/md/pdf}"
+  OUTPUT_TEX="${INPUT_FILE/md/tex}"
+fi
+
 
 SOURCE_FORMAT="markdown\
 +pipe_tables\
