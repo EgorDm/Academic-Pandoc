@@ -1,0 +1,10 @@
+#documentclass: templates/acmart
+classoption:
+- acmsmall
+- nonacm
+- screen
+- acmthm
+natbib: true
+biblio-style: plainnat
+xnos-warning-level: 1
+toc-nl: true
