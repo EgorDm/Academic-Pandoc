@@ -44,6 +44,7 @@ BUILD_COMMAND="pandoc \
   --metadata documentclass="$SCRIPT_DIR_REL/templates/acmart" \
   -f $SOURCE_FORMAT \
   --filter pandoc-xnos \
+  --filter pandoc-comments \
   -i $INPUT_FILE"
 
 echo "Building $OUTPUT_PDF from $INPUT_FILE"

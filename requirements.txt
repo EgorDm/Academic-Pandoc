@@ -1,1 +1,3 @@
-pandoc-xnos
+pandoc-xnos==2.5.0
+git+https://github.com/tomduck/pandoc-comments.git
+git+https://github.com/tomduck/pandoc-theoremnos.git

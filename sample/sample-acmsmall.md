@@ -46,9 +46,40 @@ authors:
 bibliography: sample-base.bib
 toc: true
 title: The Name of the Title is Hope
+theoremnos-names:
+- id: thm
+  name: Theorem
+- id: dfn
+  name: Definition
 ---
 
 # Introduction
+
+% This is a comment
+% Which should not be visible in the pdf
+
+[]{#dfn:good}
+: This is my definition of good.
+
+[Pythagorean theorem]{#thm:pythagorean}
+
+: For a right triangle, if $c$ denotes the length of the hypotenuse
+: 
+: and $a$ and $b$ denote the lengths of the other two sides, we have
+
+$$a^2 + b^2 = c^2$$
+
+
+*@thm:pythagorean is very popular and is unrelated to @dfn:good.
+
+
+And this is a normal definition list:
+
+Day
+: When the sun is above the horizon.
+
+Night
+: When it is not day.
 
 ACM's consolidated article template, introduced in 2017, provides a
 consistent LaTeX style for use across ACM publications, and incorporates
