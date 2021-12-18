@@ -16,7 +16,7 @@ if [ -d "$INPUT_FILE" ]; then
   if [ -f "$INPUT_FILE/meta.yml" ]; then
     METADATA_ARGS="--metadata-file $INPUT_FILE/meta.yml"
   fi
-  cat "$INPUT_FILE"/*.md > "$INPUT_FILE/main.mdc"
+  awk 'FNR==1{print ""}1' "$INPUT_FILE"/*.md > "$INPUT_FILE/main.mdc"
   INPUT_FILE="${INPUT_FILE}/main.mdc"
   OUTPUT_PDF="${INPUT_FILE/mdc/pdf}"
   OUTPUT_TEX="${INPUT_FILE/mdc/tex}"
