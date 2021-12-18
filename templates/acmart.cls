@@ -2820,8 +2820,8 @@
   {\ACM@NRadjust\@subsecfont}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
   {-.5\baselineskip \@plus -2\p@ \@minus -.2\p@}%
-  {-3.5\p@}%
-  {\ACM@NRadjust{\@subsubsecfont\@adddotafter}}}
+  {.25\baselineskip}%
+  {\ACM@NRadjust{\@subsubsecfont}}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent}%
   {-.5\baselineskip \@plus -2\p@ \@minus -.2\p@}%
   {-3.5\p@}%
@@ -2847,9 +2847,10 @@
 \ifcase\ACM@format@nr
 \relax % manuscript
 \or % acmsmall
+ \def\@secfont{\sffamily\bfseries\Large\section@raggedright\MakeTextUppercase}
+ \def\@subsecfont{\sffamily\bfseries\Large\section@raggedright}
+ \def\@subsubsecfont{\sffamily\itshape\large\section@raggedright}
 \or % acmlarge
- \def\@secfont{\sffamily\large\section@raggedright\MakeTextUppercase}
- \def\@subsecfont{\sffamily\large\section@raggedright}
 \or % acmtog
  \def\@secfont{\sffamily\large\section@raggedright\MakeTextUppercase}
  \def\@subsecfont{\sffamily\large\section@raggedright}
