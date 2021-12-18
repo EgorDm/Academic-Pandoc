@@ -6,5 +6,11 @@ classoption:
 - acmthm
 natbib: true
 biblio-style: plainnat
-xnos-warning-level: 1
 toc-nl: true
+xnos-warning-level: 1
+theoremnos-cleveref: True
+theoremnos-names:
+- id: thm
+  name: Theorem
+- id: dfn
+  name: Definition
