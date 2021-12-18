@@ -1,0 +1,46 @@
+abstract: |
+  A clear and well-documented LaTeX document is presented as an article
+  formatted for publication by ACM in a conference proceedings or
+  journal publication. Based on the "acmart" document class, this
+  article presents and explains many of the common variations, as well
+  as many of the formatting elements an author may use in the
+  preparation of the documentation of their work.
+authors:
+- name: Ben Trovato
+  affiliation:
+    institution: Institute for Clarity in Documentation
+    country: USA
+- name: G.K.M. Tobin
+  affiliation:
+    institution: Institute for Clarity in Documentation
+    country: USA
+- name: Lars Thørväld
+  affiliation:
+    institution: The Thørväld Group
+    country: Iceland
+- name: Valerie Béranger
+  affiliation:
+    institution: Inria Paris-Rocquencourt
+    country: France
+- name: Aparna Patel
+  affiliation:
+    institution: Rajiv Gandhi University
+    country: India
+- name: Huifen Chan
+  affiliation:
+    institution: Tsinghua University
+    country: China
+- name: Charles Palmer
+  affiliation:
+    institution: Palmer Research Laboratories
+    country:  USA
+- name: John Smith
+  affiliation:
+    institution:  The Thørväld Grou
+    country:  Iceland
+- name: Julius P. Kumquat
+  affiliation:
+    institution: The Kumquat Consortium
+    country:  USA
+bibliography: sample-base.bib
+toc: true

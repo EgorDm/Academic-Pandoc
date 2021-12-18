@@ -9,9 +9,13 @@ cd $WORKDIR
 SCRIPT_DIR_REL="$(realpath --relative-to="$(pwd)" "$SCRIPT_DIR")"
 
 # Handle directory projects
+METADATA_ARGS=
 if [ -d "$INPUT_FILE" ]; then
   echo $INPUT_FILE
   INPUT_FILE="$(realpath $INPUT_FILE)"
+  if [ -f "$INPUT_FILE/meta.yml" ]; then
+    METADATA_ARGS="--metadata-file $INPUT_FILE/meta.yml"
+  fi
   cat "$INPUT_FILE"/*.md > "$INPUT_FILE/main.mdc"
   INPUT_FILE="${INPUT_FILE}/main.mdc"
   OUTPUT_PDF="${INPUT_FILE/mdc/pdf}"
@@ -42,6 +46,7 @@ BUILD_COMMAND="pandoc \
   --template="$SCRIPT_DIR/templates/acmart.tex" \
   --metadata-file="$SCRIPT_DIR/templates/acmart.yml" \
   --metadata documentclass="$SCRIPT_DIR_REL/templates/acmart" \
+  $METADATA_ARGS \
   -f $SOURCE_FORMAT \
   --filter pandoc-xnos \
   --filter pandoc-comments \
@@ -50,5 +55,6 @@ BUILD_COMMAND="pandoc \
 echo "Building $OUTPUT_PDF from $INPUT_FILE"
 if [ $DEBUG ]; then
   $BUILD_COMMAND -o "$OUTPUT_TEX"
+  echo $BUILD_COMMAND -o "$OUTPUT_PDF"
 fi
 $BUILD_COMMAND -o "$OUTPUT_PDF"
