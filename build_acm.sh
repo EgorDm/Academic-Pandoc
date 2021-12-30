@@ -48,6 +48,7 @@ BUILD_COMMAND="pandoc \
   --metadata documentclass="$SCRIPT_DIR_REL/templates/acmart" \
   $METADATA_ARGS \
   -f $SOURCE_FORMAT \
+  --filter pandoc-theoremnos \
   --filter pandoc-xnos \
   --filter pandoc-comments \
   -i $INPUT_FILE"

@@ -85,7 +85,9 @@ $endif$
 $if(fontfamily)$
 \usepackage[$for(fontfamilyoptions)$$fontfamilyoptions$$sep$,$endfor$]{$fontfamily$}
 $else$
-\usepackage{lmodern}
+% \usepackage{lmodern}
+% \DeclareMathDelimiter{(}{\mathopen} {operators}{"28}{largesymbols}{"00}
+% \DeclareMathDelimiter{)}{\mathclose}{operators}{"29}{largesymbols}{"01}
 $endif$
 $if(linestretch)$
 \usepackage{setspace}
