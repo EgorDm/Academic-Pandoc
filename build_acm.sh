@@ -13,6 +13,7 @@ METADATA_ARGS=
 if [ -d "$INPUT_FILE" ]; then
   echo $INPUT_FILE
   INPUT_FILE="$(realpath $INPUT_FILE)"
+  WORKDIR="$INPUT_FILE"
   if [ -f "$INPUT_FILE/meta.yml" ]; then
     METADATA_ARGS="--metadata-file $INPUT_FILE/meta.yml"
   fi
@@ -25,6 +26,7 @@ else
   OUTPUT_TEX="${INPUT_FILE/md/tex}"
 fi
 
+cd $WORKDIR
 
 SOURCE_FORMAT="markdown\
 +pipe_tables\
@@ -45,7 +47,6 @@ BUILD_COMMAND="pandoc \
   --resource-path="$SCRIPT_DIR:$WORKDIR:." \
   --template="$SCRIPT_DIR/templates/acmart.tex" \
   --metadata-file="$SCRIPT_DIR/templates/acmart.yml" \
-  --metadata documentclass="$SCRIPT_DIR_REL/templates/acmart" \
   $METADATA_ARGS \
   -f $SOURCE_FORMAT \
   --filter pandoc-theoremnos \
@@ -53,9 +54,10 @@ BUILD_COMMAND="pandoc \
   --filter pandoc-comments \
   -i $INPUT_FILE"
 
+VAR_TEXINPUTS=".:$WORKDIR:$SCRIPT_DIR/templates:$TEXINPUTS"
 echo "Building $OUTPUT_PDF from $INPUT_FILE"
 if [ $DEBUG ]; then
-  $BUILD_COMMAND -o "$OUTPUT_TEX"
-  echo $BUILD_COMMAND -o "$OUTPUT_PDF"
+  TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -o "$OUTPUT_TEX"
+  echo TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -o "$OUTPUT_PDF"
 fi
-$BUILD_COMMAND -o "$OUTPUT_PDF"
+TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -o "$OUTPUT_PDF"

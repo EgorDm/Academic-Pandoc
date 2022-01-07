@@ -1,4 +1,4 @@
-#documentclass: templates/acmart
+documentclass: acmart
 classoption:
 - acmsmall
 - nonacm
