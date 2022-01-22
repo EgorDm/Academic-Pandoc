@@ -411,6 +411,10 @@ $if(csquotes)$
 \usepackage{csquotes}
 $endif$
 
+\usepackage{pdflscape}
+\newcommand{\blandscape}{\begin{landscape}}
+\newcommand{\elandscape}{\end{landscape}}
+
 % Title
 $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}

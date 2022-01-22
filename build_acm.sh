@@ -2,9 +2,9 @@
 
 SCRIPT_DIR="$(realpath $(dirname "$0"))"
 INPUT_FILE="$(realpath "$1")"
-WORKDIR="$(dirname $INPUT_FILE)"
+WORKDIR="$(dirname "$INPUT_FILE")"
 
-cd $WORKDIR
+cd "$WORKDIR"
 
 SCRIPT_DIR_REL="$(realpath --relative-to="$(pwd)" "$SCRIPT_DIR")"
 
@@ -12,7 +12,7 @@ SCRIPT_DIR_REL="$(realpath --relative-to="$(pwd)" "$SCRIPT_DIR")"
 METADATA_ARGS=
 if [ -d "$INPUT_FILE" ]; then
   echo $INPUT_FILE
-  INPUT_FILE="$(realpath $INPUT_FILE)"
+  INPUT_FILE="$(realpath "$INPUT_FILE")"
   WORKDIR="$INPUT_FILE"
   if [ -f "$INPUT_FILE/meta.yml" ]; then
     METADATA_ARGS="--metadata-file $INPUT_FILE/meta.yml"
@@ -26,7 +26,7 @@ else
   OUTPUT_TEX="${INPUT_FILE/md/tex}"
 fi
 
-cd $WORKDIR
+cd "$WORKDIR"
 
 SOURCE_FORMAT="markdown\
 +pipe_tables\
@@ -51,13 +51,12 @@ BUILD_COMMAND="pandoc \
   -f $SOURCE_FORMAT \
   --filter pandoc-theoremnos \
   --filter pandoc-xnos \
-  --filter pandoc-comments \
-  -i $INPUT_FILE"
+  --filter pandoc-comments"
 
 VAR_TEXINPUTS=".:$WORKDIR:$SCRIPT_DIR/templates:$TEXINPUTS"
 echo "Building $OUTPUT_PDF from $INPUT_FILE"
 if [ $DEBUG ]; then
-  TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -o "$OUTPUT_TEX"
-  echo TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -o "$OUTPUT_PDF"
+  TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -i "$INPUT_FILE" -o "$OUTPUT_TEX"
+  echo TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -i "$INPUT_FILE" -o "$OUTPUT_PDF"
 fi
-TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -o "$OUTPUT_PDF"
+TEXINPUTS="$VAR_TEXINPUTS" $BUILD_COMMAND -i "$INPUT_FILE" -o "$OUTPUT_PDF"
